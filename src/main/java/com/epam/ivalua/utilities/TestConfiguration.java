@@ -6,9 +6,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +18,10 @@ public class TestConfiguration {
 
     @Autowired
     public WebDriverManager webDriverManager;
+
+    @Autowired
+    public WebDriver webDriver;
+
     @Autowired
     public BrowserActions browserActions;
 
@@ -31,17 +34,12 @@ public class TestConfiguration {
 
     @Before(order = 1)
     public void launchBrowser() {
-        /*String browser = properties.getProperty("BrowserName");
-        if (browser.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext();
+        ac.scan("com.epam.ivalua.utilities", "com.epam.ivalua.pagesteps", "com.epam.ivalua.wrappers");
+        ac.refresh();
 
-        } else if (browser.equalsIgnoreCase("firefox")) {
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
-        }*/
-        webDriverManager.getWebDriver().manage().window().maximize();
+        webDriver = ac.getBean(WebDriver.class);
+        webDriver.manage().window().maximize();
         browserActions.wait((long) 10, TimeUnit.SECONDS);
         log.info("User launched " + "webDriverManager." + " browser successfully");
     }

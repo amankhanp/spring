@@ -17,7 +17,6 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static com.epam.ivalua.utilities.ConfigPropertiesConfiguration.properties;
-//import static com.epam.ivalua.utilities.TestConfiguration.driver;
 
 @Log4j
 @Component
@@ -28,12 +27,12 @@ public class BrowserActions {
     @Autowired
     public WebDriverManager driver;
 
-    private BrowserActions() {
+    /*private BrowserActions() {
         throw new IllegalStateException("Browser Actions class");
-    }
+    }*/
 
     public void openBrowser(String url) {
-        driver.getWebDriver().navigate().to(url);
+        driver.getDriver().navigate().to(url);
         log.info("User navigated to the given URL: " + url);
     }
 
@@ -43,7 +42,7 @@ public class BrowserActions {
     }*/
 
     public void quitBrowser() {
-        driver.getWebDriver().quit();
+        driver.getDriver().quit();
         log.info("All browser closed successfully");
     }
 

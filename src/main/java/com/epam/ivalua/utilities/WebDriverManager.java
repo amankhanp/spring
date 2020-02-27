@@ -3,20 +3,13 @@ package com.epam.ivalua.utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
 
 import static com.epam.ivalua.utilities.ConfigPropertiesConfiguration.properties;
-@Component @Configuration
-//@ComponentScan(basePackages = "com.epam.ivalua")
+@Component
 public class WebDriverManager {
 
     private WebDriver webDriver;
@@ -25,6 +18,7 @@ public class WebDriverManager {
         return webDriver;
     }
 
+    @Bean
     public WebDriver getWebDriver(){
         String browser = properties.getProperty("BrowserName");
         if (browser.equalsIgnoreCase("chrome")) {

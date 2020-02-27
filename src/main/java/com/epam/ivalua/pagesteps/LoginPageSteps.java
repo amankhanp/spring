@@ -17,7 +17,7 @@ import java.util.Map;
 import static com.epam.ivalua.utilities.CommonUtils.decodeAString;
 import static com.epam.ivalua.utilities.CommonUtils.encodeAString;
 
-@Log4j @Component @Configuration
+@Log4j @Component
 public class LoginPageSteps {
 
     @Autowired
@@ -26,9 +26,9 @@ public class LoginPageSteps {
     @Autowired
     public WebElementActions webElementActions;
 
-    private LoginPageSteps() {
+    /*private LoginPageSteps() {
         throw new IllegalStateException("Login Page Steps class");
-    }
+    }*/
 
     public void navigateToLoginPage() {
         validationActions.verifyText(LogInConstants.WELCOME_TITLE, CommonValidationConstants.WELCOME_TITLE_TEXT);

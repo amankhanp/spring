@@ -25,12 +25,12 @@ public class WebElementActions {
     @Autowired
     public WebDriverManager driver;
 
-    private WebElementActions() {
+    /*private WebElementActions() {
         throw new IllegalStateException("WebElement Actions class");
-    }
+    }*/
 
     public void clearAndType(String element, String value) {
-        webElement = driver.getWebDriver().findElement(By.xpath(element));
+        webElement = driver.getDriver().findElement(By.xpath(element));
         browserActions.waitForElementToVisible(webElement);
         log.info("User typing text on element: " + element);
         webElement.clear();
@@ -59,7 +59,7 @@ public class WebElementActions {
     }
 
     public void onClick(String element){
-        webElement = driver.getWebDriver().findElement(By.xpath(element));
+        webElement = driver.getDriver().findElement(By.xpath(element));
         try{
             browserActions.waitForElementToClickable(webElement);
             log.debug("Element is Clickable : " + webElement);
@@ -70,7 +70,7 @@ public class WebElementActions {
     }
 
     public void selectCheckbox(String element) {
-        webElement = driver.getWebDriver().findElement(By.xpath(element));
+        webElement = driver.getDriver().findElement(By.xpath(element));
         browserActions.waitForElementToVisible(webElement);
         boolean isSelected = webElement.isSelected();
         if (isSelected)

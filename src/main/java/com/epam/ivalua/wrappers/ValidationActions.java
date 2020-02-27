@@ -14,12 +14,12 @@ public class ValidationActions {
     @Autowired
     public WebDriverManager driver;
 
-    private ValidationActions() {
+    /*private ValidationActions() {
         throw new IllegalStateException("Validation Actions class");
-    }
+    }*/
 
     public void verifyText(String element, String expectedValue) {
-        WebElement webElement = driver.getWebDriver().findElement(By.xpath(element));
+        WebElement webElement = driver.getDriver().findElement(By.xpath(element));
         log.info("User validating text on element: " + element);
         String actualValue = webElement.getText();
         if (actualValue.trim().equalsIgnoreCase(expectedValue.trim())) {

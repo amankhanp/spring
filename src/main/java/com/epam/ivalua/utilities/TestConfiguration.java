@@ -8,19 +8,17 @@ import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
 import static com.epam.ivalua.utilities.ConfigPropertiesConfiguration.properties;
 
-@Log4j
+@Log4j @Component
 public class TestConfiguration {
 
     @Autowired
     public WebDriverManager webDriverManager;
-
-    @Autowired
-    public WebDriver webDriver;
 
     @Autowired
     public BrowserActions browserActions;
@@ -34,12 +32,12 @@ public class TestConfiguration {
 
     @Before(order = 1)
     public void launchBrowser() {
-        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext();
+        /*AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext();
         ac.scan("com.epam.ivalua.utilities", "com.epam.ivalua.pagesteps", "com.epam.ivalua.wrappers");
         ac.refresh();
 
-        webDriver = ac.getBean(WebDriver.class);
-        webDriver.manage().window().maximize();
+        webDriver = ac.getBean(WebDriver.class);*/
+        webDriverManager.getDriver().manage().window().maximize();
         browserActions.wait((long) 10, TimeUnit.SECONDS);
         log.info("User launched " + "webDriverManager." + " browser successfully");
     }

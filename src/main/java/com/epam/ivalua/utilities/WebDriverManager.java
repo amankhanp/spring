@@ -6,7 +6,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PreDestroy;
 
 import static com.epam.ivalua.utilities.ConfigPropertiesConfiguration.properties;
 @Component
@@ -46,7 +45,7 @@ public class WebDriverManager {
         return webDriver;
     }
 
-    @PreDestroy
+    //@PreDestroy
     public void closeSession(){
         getDriver().manage().deleteAllCookies();
         getDriver().close();
